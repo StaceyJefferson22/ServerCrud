@@ -90,7 +90,7 @@ const deleteAthlete = async(athlete) => {
     });
 
     if(response.status != 200) {
-        console.log("error deleting");
+        console.log("error deleting"); 
         return;
     }
 

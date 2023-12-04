@@ -23,7 +23,7 @@ app.get("/", (req, res) => {
 });
 
 const athleteSchema = new mongoose.Schema({
-    /* _id: mongoose.SchemaTypes.ObjectId,*/
+    /* _id: mongoose.SchemaTypes.ObjectId, */
     name:String,
     sport: String,
     description: String,
@@ -68,6 +68,7 @@ app.post("/api/athletes", upload.single("img"), (req, res) => {
     console.log(result);
     if (result.error) {
         res.status(400).send(result.error.details[0].message);
+        //res.text();
         return;
     }
 
@@ -100,6 +101,7 @@ app.put("/api/athletes/:id", upload.single("img"), (req, res) => {
     }
 
     updateAthlete(req,res);
+    console.log("Athlete has been updated")
 });
 
 const updateAthlete = async (req,res) => {
@@ -120,7 +122,8 @@ const updateAthlete = async (req,res) => {
 };
 
 app.delete("/api/athletes/:id", upload.single("img"), (req,res) =>{
-removeAthletes(res, req.params.id);
+    removeAthletes(res, req.params.id);
+    console.log("Athlete has been deleted.");
 });
 
 const removeAthletes = async(res, id) => {
@@ -135,8 +138,8 @@ const validateAthlete = (athlete) => {
         name: Joi.string().min(3).required(),
         description: Joi.string().min(3).required()
     });
-
     return schema.validate(athlete);
+
 };
 
 app.listen(5000, () => {
