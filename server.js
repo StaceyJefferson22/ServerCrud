@@ -84,6 +84,7 @@ app.post("/api/athletes", upload.single("img"), (req, res) => {
     }
 
     createAthlete(athlete, res);
+    console.log("Athlete has been added.")
 });
 
 const createAthlete = async (athlete, res) => {
@@ -101,7 +102,7 @@ app.put("/api/athletes/:id", upload.single("img"), (req, res) => {
     }
 
     updateAthlete(req,res);
-    console.log("Athlete has been updated")
+    console.log("Athlete has been updated.")
 });
 
 const updateAthlete = async (req,res) => {
