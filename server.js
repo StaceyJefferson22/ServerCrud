@@ -68,7 +68,6 @@ app.post("/api/athletes", upload.single("img"), (req, res) => {
     console.log(result);
     if (result.error) {
         res.status(400).send(result.error.details[0].message);
-        //res.text();
         return;
     }
 
@@ -79,8 +78,12 @@ app.post("/api/athletes", upload.single("img"), (req, res) => {
         awards: req.body.awards.split(",")
     })
 
+
     if(req.file) {
         athlete.img = "images/" + req.file.filename;
+    }
+    if(!req.body.name){
+        res.text("length must be at least 3 ch")
     }
 
     createAthlete(athlete, res);
